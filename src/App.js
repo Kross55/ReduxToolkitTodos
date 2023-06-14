@@ -1,12 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+//import logo from './logo.svg';
+//import { Counter } from './features/counter/Counter';
+import TodoList from './features/todos/TodoList';
+import TodoForm from './features/todos/TodoForm';
+import './features/todos/index.css';
+
+import { fetchTodos } from './features/todos/todoSlice';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
+    <div /*className="App"*/>
+      <TodoList />
+      <TodoForm />
+      {/*<header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
         <p>
@@ -50,7 +63,7 @@ function App() {
             React Redux
           </a>
         </span>
-      </header>
+      </header>*/}
     </div>
   );
 }
